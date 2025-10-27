@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Miehe_Alix_Tp1
 {
-    class Weapon
+    public class Weapon
     {
         private string name;
         private EWeaponType weaponType;

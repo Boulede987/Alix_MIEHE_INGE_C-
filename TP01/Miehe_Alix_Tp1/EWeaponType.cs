@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Miehe_Alix_Tp1
 {
 
-    enum EWeaponType
+    public enum EWeaponType
     {
         Direct,
         Explosive,

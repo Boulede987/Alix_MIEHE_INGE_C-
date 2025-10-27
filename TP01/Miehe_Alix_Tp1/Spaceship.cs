@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 
 namespace Miehe_Alix_Tp1
-{ 
-    class Spaceship
+{
+    public class Spaceship
     {
         private int maxStructure;
         private int maxShield;

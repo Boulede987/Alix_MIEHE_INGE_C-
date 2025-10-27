@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Miehe_Alix_Tp1
 {
-    class Armory
+    public class Armory
     {
         private List<Weapon> WeaponList;
 

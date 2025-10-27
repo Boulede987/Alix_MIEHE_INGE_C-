@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Miehe_Alix_Tp1
 {
-    class ArmoryException : Exception
+    public class ArmoryException : Exception
     {
         public ArmoryException() : base()
         {

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Miehe_Alix_Tp1
 {
-    class Player
+    public class Player
     {
         private string firstName { get; } // ne doivent pas êtres modifiables, donc getters seulement
         private string lastName { get; }
