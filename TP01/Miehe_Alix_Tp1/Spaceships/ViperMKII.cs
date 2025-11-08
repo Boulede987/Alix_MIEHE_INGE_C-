@@ -9,7 +9,7 @@ namespace Miehe_Alix_Tp1.Spaceships
     internal class ViperMKII : Spaceship
     {
         public ViperMKII(int aMaxStructure, int aMaxShield, int aCurrentStructure, int aCurrentShield, List<Weapon> someAttachedWeapons)
-            : base(10, 15, aCurrentStructure, aCurrentShield, 
+            : base(10, 15, 10, 15, 
                   new List<Weapon> 
                   {
                     new Weapon("Mitrailleuse", 6, 8, EWeaponType.Direct, 1),

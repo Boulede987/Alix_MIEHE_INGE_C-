@@ -10,7 +10,7 @@ namespace Miehe_Alix_Tp1.Spaceships
     internal class F_18 : Spaceship, IAbility
     {
         public F_18(int aMaxStructure, int aMaxShield, int aCurrentStructure, int aCurrentShield, List<Weapon> someAttachedWeapons)
-            : base(15, 0, aCurrentStructure, aCurrentShield, new List<Weapon>())
+            : base(15, 0, 15, 0, new List<Weapon>())
         {
             //
         }

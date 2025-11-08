@@ -10,7 +10,7 @@ namespace Miehe_Alix_Tp1.Spaceships
     internal class Tardis : Spaceship, IAbility
     {
         public Tardis(int aMaxStructure, int aMaxShield, int aCurrentStructure, int aCurrentShield, List<Weapon> someAttachedWeapons)
-            : base(1, 0, aCurrentStructure, aCurrentShield, new List<Weapon>())
+            : base(1, 0, 1, 0, new List<Weapon>())
         {
             //
         }

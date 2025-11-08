@@ -9,7 +9,7 @@ namespace Miehe_Alix_Tp1.Spaceships
     internal class Rocinante : Spaceship
     {
         public Rocinante(int aMaxStructure, int aMaxShield, int aCurrentStructure, int aCurrentShield, List<Weapon> someAttachedWeapons)
-            : base(3, 5, aCurrentStructure, aCurrentShield, someAttachedWeapons)
+            : base(3, 5, 3, 5, someAttachedWeapons)
         {
             EnsureTorpille();
         }

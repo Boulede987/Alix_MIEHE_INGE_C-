@@ -9,7 +9,7 @@ namespace Miehe_Alix_Tp1.Spaceships
     internal class Dart : Spaceship
     {
         public Dart(int aMaxStructure, int aMaxShield, int aCurrentStructure, int aCurrentShield, List<Weapon> someAttachedWeapons)
-            : base(10, 3, aCurrentStructure, aCurrentShield, someAttachedWeapons)
+            : base(10, 3, 10, 3, someAttachedWeapons)
         {
             EnsureLaser();
         }

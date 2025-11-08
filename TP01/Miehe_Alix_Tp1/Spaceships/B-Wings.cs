@@ -9,7 +9,7 @@ namespace Miehe_Alix_Tp1.Spaceships
     internal class B_Wings : Spaceship
     {
         public B_Wings(int aMaxStructure, int aMaxShield, int aCurrentStructure, int aCurrentShield, List<Weapon> someAttachedWeapons)
-            : base(30, 0, aCurrentStructure, aCurrentShield, someAttachedWeapons)
+            : base(30, 0, 30, 0, someAttachedWeapons)
         {
             EnsureHammer();
         }
