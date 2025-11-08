@@ -17,7 +17,7 @@ namespace Miehe_Alix_Tp1.Spaceships
         public double Shield { get; set; }
         public List<Weapon> Weapons { get; }
         public int MaxWeapons { get; }
-        public double AverageDamages 
+        public double AverageDamages
         {
             get
             {
@@ -32,7 +32,13 @@ namespace Miehe_Alix_Tp1.Spaceships
                 return avg;
             }
         }
-        public bool IsDestroyed { get; }
+        public bool IsDestroyed
+        {
+            get
+            {
+                return CurrentStructure <= 0;
+            }
+        }
         public bool BelongsPlayer { get; }
 
         public Spaceship(int aMaxStructure, int aMaxShield, int aCurrentStructure, int aCurrentShield, List<Weapon> someAttachedWeapons)
@@ -83,15 +89,39 @@ namespace Miehe_Alix_Tp1.Spaceships
             }
         }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
         public void ShootTarget(Spaceship target)
         {
             double totalDamage = 0;
             foreach (Weapon wpon in Weapons)
             {
-                totalDamage += wpon.AverageDamage;
+                totalDamage += wpon.Shoot();
             }
             target.TakeDamages(totalDamage);
         }
+
+
+
+
+
+
+
+
+
+
+
 
         public void AddWeapon(Weapon aWeapon)
         {
@@ -99,7 +129,7 @@ namespace Miehe_Alix_Tp1.Spaceships
             {
                 throw new Exception("Trop de dakka!");
             }
-            else if (  Armory.Contains(aWeapon) == false )
+            else if (Armory.Contains(aWeapon) == false)
             {
                 throw new ArmoryException();
             }
@@ -128,7 +158,7 @@ namespace Miehe_Alix_Tp1.Spaceships
 
         public void ViewWeapons()
         {
-            foreach(Weapon wpon in Weapons)
+            foreach (Weapon wpon in Weapons)
             {
                 Console.WriteLine(wpon.ToString());
             }
@@ -147,12 +177,26 @@ namespace Miehe_Alix_Tp1.Spaceships
             );
         }
 
+
+
+
+
+
         public void ReloadWeapons()
         {
             foreach (Weapon wpon in Weapons)
             {
-                wpon.TimeBeforReload = 0;
+                wpon.TimeBeforReload = wpon.TimeBeforReload - 1;
+
+                if (wpon.TimeBeforReload < 0)
+                {
+                    wpon.TimeBeforReload = 0;
+                }
             }
         }
+
+
+
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Miehe_Alix_Tp1.Spaceships;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -38,7 +39,7 @@ namespace Miehe_Alix_Tp1
             Armory.AddWeapon(new Weapon("Dégomatron 9000", 999999, 9999999, EWeaponType.Explosive, 0));
 
             // c mon petit cousin il pue la merde
-            players[2].SetSpaceship(new Spaceship(999999999, 999999999, 999999999, 999999999, new List<Weapon> { new Weapon("Dégomatron 9000", 999999, 9999999, EWeaponType.Explosive, 0) }));
+            players[2].SetSpaceship(new ViperMKII(999999999, 999999999, 999999999, 999999999, new List<Weapon> { new Weapon("Dégomatron 9000", 999999, 9999999, EWeaponType.Explosive, 0) }));
         }
 
         public List<Player> GetPlayers()

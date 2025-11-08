@@ -21,7 +21,7 @@ namespace Miehe_Alix_Tp1
             }
         }
         public double ReloadTime { get; set; }
-        public double TimeBeforReload { get; set; } // permet de savoir si l'armeest utilisable
+        public double TimeBeforReload { get; set; } // permet de savoir si l'arme est utilisable
         public bool IsReload
         {
             get
@@ -71,6 +71,8 @@ namespace Miehe_Alix_Tp1
             return rtrn;
         }
 
+
+
         public double Shoot()
         {
             double rtrn = 0;
@@ -108,5 +110,9 @@ namespace Miehe_Alix_Tp1
 
             return rtrn;
         }
+
+
+
+
     }
 }
