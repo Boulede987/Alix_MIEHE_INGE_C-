@@ -80,6 +80,7 @@ namespace Miehe_Alix_Tp1
             if (this.TimeBeforReload != 0)
             {
                 rtrn = 0;
+                Console.WriteLine($"L'arme {this.Name} n'est pas rechargée !");
             }
             else
             {
@@ -93,17 +94,22 @@ namespace Miehe_Alix_Tp1
                         if ( rand.Next(1, 11) == 1 ) // 1 chance sur 10 de rater
                         {
                             rtrn = 0;
+                            Console.WriteLine($"L'arme {this.Name} a raté sa cible !");
                         }
+                        Console.WriteLine($"L'arme {this.Name} a infligé {rtrn} points de dégâts.");
                         break;
                     case EWeaponType.Explosive:
                         if (rand.Next(1, 5) == 1) // 1 chance sur 10 de rater
                         {
                             rtrn = 0;
+                            Console.WriteLine($"L'arme {this.Name} a raté sa cible !");
                         } // double le temps de rechargement
+                        Console.WriteLine($"L'arme {this.Name} a infligé {rtrn} points de dégâts.");
                         this.TimeBeforReload = this.ReloadTime * 2;
-                            break;
+                        break;
                     case EWeaponType.Guided:
                         rtrn = this.MinDamage; // touche toujours, mais avec degats minimum
+                        Console.WriteLine($"L'arme {this.Name} a infligé {rtrn} points de dégâts.");
                         break;
                 }
             }

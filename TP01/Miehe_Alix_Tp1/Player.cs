@@ -25,7 +25,7 @@ namespace Miehe_Alix_Tp1
             this.Alias = FormatName(anAlias);
             this.Name = $"{firstName} {lastName}";
             //SetSpaceship( new Spaceship(100, 50, 100, 50, new List<Weapon> { new Weapon("Durrandal", 20, 32, EWeaponType.Explosive) }, anArmory) );
-            SetSpaceship(new ViperMKII(100, 50, 100, 50, new List<Weapon> { new Weapon("Missile", 4, 100, EWeaponType.Guided, 4) }));
+            SetSpaceship(new ViperMKII(100, 50, 100, 50, new List<Weapon> { new Weapon("Missile", 4, 100, EWeaponType.Guided, 4) }, this.Alias));
         }
 
         static private string FormatName(string aName)
@@ -46,6 +46,7 @@ namespace Miehe_Alix_Tp1
         public void SetSpaceship(Spaceship aSpaceship)
         {
             this.BattleShip = aSpaceship;
+            Console.WriteLine($"{Alias} a choisi le vaisseau {aSpaceship.Name} !");
         }
     }
 }

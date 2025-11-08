@@ -10,7 +10,7 @@ namespace Miehe_Alix_Tp1.Spaceships
 {
     public abstract class Spaceship : ISpaceship
     {
-        public string Name { get; set; }
+        public string Name { get;set; }
         public double CurrentStructure { get; set; }
         public double CurrentShield { get; set; }
         public double Structure { get; set; }
@@ -39,7 +39,7 @@ namespace Miehe_Alix_Tp1.Spaceships
                 return CurrentStructure <= 0;
             }
         }
-        public bool BelongsPlayer { get; }
+        public bool BelongsPlayer { get; protected set; }
 
         public Spaceship(int aMaxStructure, int aMaxShield, int aCurrentStructure, int aCurrentShield, List<Weapon> someAttachedWeapons)
         {
@@ -61,6 +61,7 @@ namespace Miehe_Alix_Tp1.Spaceships
             if (CurrentShield >= damages)
             {
                 CurrentShield -= damages;
+                Console.WriteLine($"{Name} a subi {damages} points de dégâts !");
             }
             else
             {
@@ -69,24 +70,31 @@ namespace Miehe_Alix_Tp1.Spaceships
                 if (CurrentStructure >= remainingDamages)
                 {
                     CurrentStructure -= remainingDamages;
+                    Console.WriteLine($"{Name} a subi {damages} points de dégâts !");
                 }
                 else
                 {
                     CurrentStructure = 0;
+                    Console.WriteLine($"==AAAAVVVVVVAAAA=={Name} est détruit==AAAAVVVVVVAAAA==");
                 }
             }
         }
 
         public void RepairShield(double repair)
         {
-            if (CurrentShield + repair <= Shield)
+            if (this.IsDestroyed == false)
             {
-                CurrentShield += repair;
+                if (CurrentShield + repair <= Shield)
+                {
+                    CurrentShield += repair;
+                }
+                else
+                {
+                    CurrentShield = Shield;
+                }
+                Console.WriteLine($"{Name} a réparé {repair} points de bouclier !");
             }
-            else
-            {
-                CurrentShield = Shield;
-            }
+            
         }
 
 
@@ -110,6 +118,8 @@ namespace Miehe_Alix_Tp1.Spaceships
                 totalDamage += wpon.Shoot();
             }
             target.TakeDamages(totalDamage);
+
+            Console.WriteLine($"{Name} a tiré sur {target.Name} et lui a infligé {totalDamage} points de dégâts !");
         }
 
 

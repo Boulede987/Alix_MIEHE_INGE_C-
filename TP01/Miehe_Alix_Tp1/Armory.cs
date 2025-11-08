@@ -40,11 +40,13 @@ namespace Miehe_Alix_Tp1
         public static void AddWeapon(Weapon aWeapon)
         {
             WeaponList.Add(aWeapon);
+            Console.WriteLine($"{aWeapon.Name} a été ajouté à l'armurerie.");
         }
 
         public static void RemoveWeapon(Weapon aWeapon)
         {
             WeaponList.Remove(aWeapon);
+            Console.WriteLine($"{aWeapon.Name} a été retiré de l'armurerie.");
         }
 
         public static bool Contains(Weapon aWeapon)

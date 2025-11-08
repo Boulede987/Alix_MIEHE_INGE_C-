@@ -12,6 +12,7 @@ namespace Miehe_Alix_Tp1.Spaceships
             : base(30, 0, 30, 0, someAttachedWeapons)
         {
             EnsureHammer();
+            this.Name = "B-Wings";
         }
 
         private void EnsureHammer()
@@ -45,6 +46,10 @@ namespace Miehe_Alix_Tp1.Spaceships
                     wpon.TimeBeforReload = 0;
                 }
             }
+
+            Console.WriteLine("Les armes du B-Wings se rechargent !");
         }
+
+
     }
 }

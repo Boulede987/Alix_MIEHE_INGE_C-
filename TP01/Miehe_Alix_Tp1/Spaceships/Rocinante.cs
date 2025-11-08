@@ -12,6 +12,7 @@ namespace Miehe_Alix_Tp1.Spaceships
             : base(3, 5, 3, 5, someAttachedWeapons)
         {
             EnsureTorpille();
+            this.Name = "Rocinante";
         }
 
         private void EnsureTorpille()
@@ -41,6 +42,7 @@ namespace Miehe_Alix_Tp1.Spaceships
             {
                 base.TakeDamages(damages);
             }
+            Console.WriteLine($"{Name} a esquivé les dégâts !");
         }
 
 

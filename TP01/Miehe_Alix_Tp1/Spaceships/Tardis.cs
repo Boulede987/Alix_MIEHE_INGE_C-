@@ -12,11 +12,12 @@ namespace Miehe_Alix_Tp1.Spaceships
         public Tardis(int aMaxStructure, int aMaxShield, int aCurrentStructure, int aCurrentShield, List<Weapon> someAttachedWeapons)
             : base(1, 0, 1, 0, new List<Weapon>())
         {
-            //
+            this.Name = "Tardis";
         }
 
         public void UseAbility(List<Spaceship> spaceships)
         {
+            Console.WriteLine($"{Name} utilise son ability : Téléportation !");
             if (spaceships != null && spaceships.Count > 0)
             {
                 Random random = new Random();

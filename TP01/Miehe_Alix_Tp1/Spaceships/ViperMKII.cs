@@ -8,16 +8,17 @@ namespace Miehe_Alix_Tp1.Spaceships
 {
     internal class ViperMKII : Spaceship
     {
-        public ViperMKII(int aMaxStructure, int aMaxShield, int aCurrentStructure, int aCurrentShield, List<Weapon> someAttachedWeapons)
-            : base(10, 15, 10, 15, 
-                  new List<Weapon> 
+        public ViperMKII(int aMaxStructure, int aMaxShield, int aCurrentStructure, int aCurrentShield, List<Weapon> someAttachedWeapons, string aName)
+            : base(10, 15, 10, 15,
+                  new List<Weapon>
                   {
                     new Weapon("Mitrailleuse", 6, 8, EWeaponType.Direct, 1),
                     new Weapon("EMG", 1, 7, EWeaponType.Explosive, 1.5),
                     new Weapon("Missile", 4, 100, EWeaponType.Guided, 4)
                    })
         {
-            //
+            this.BelongsPlayer = true;
+            this.Name = $"Viper MK II - {aName}";
         }
 
 
@@ -25,8 +26,6 @@ namespace Miehe_Alix_Tp1.Spaceships
         {
             target.TakeDamages(weapon.Shoot());
         }
-
-
 
     }
 }

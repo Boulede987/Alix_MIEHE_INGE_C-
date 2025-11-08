@@ -12,6 +12,7 @@ namespace Miehe_Alix_Tp1.Spaceships
             : base(10, 3, 10, 3, someAttachedWeapons)
         {
             EnsureLaser();
+            this.Name = "Dart";
         }
 
         private void EnsureLaser()
@@ -45,6 +46,7 @@ namespace Miehe_Alix_Tp1.Spaceships
                     wpon.TimeBeforReload = 0;
                 }
             }
+            Console.WriteLine("Les armes du Dart se rechargent !");
         }
 
 
