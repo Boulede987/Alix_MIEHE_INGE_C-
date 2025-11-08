@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Miehe_Alix_Tp1;
+using Miehe_Alix_Tp1.Spaceships;
 
 namespace Models
 {

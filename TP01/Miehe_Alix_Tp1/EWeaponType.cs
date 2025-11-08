@@ -9,8 +9,8 @@ namespace Miehe_Alix_Tp1
 
     public enum EWeaponType
     {
-        Direct,
-        Explosive,
-        Guided
+        Direct, // 1 chance sur 10 de rater sa cible
+        Explosive, // 1 chance sur 4 de rater, double le temps de rechargement
+        Guided // touche toujours, mais avec degats minimum
     }
 }

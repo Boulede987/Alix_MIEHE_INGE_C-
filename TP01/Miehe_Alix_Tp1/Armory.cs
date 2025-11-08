@@ -6,48 +6,51 @@ using System.Threading.Tasks;
 
 namespace Miehe_Alix_Tp1
 {
-    public class Armory
+    public static class Armory
     {
-        private List<Weapon> WeaponList;
+        private static List<Weapon> WeaponList;
 
-        public Armory()
+        //public Armory()
+        //{
+        //    this.Init();
+        //}
+
+        public static void Init()
         {
-            this.Init();
+            WeaponList = new List<Weapon>();
+
+            AddWeapon(new Weapon("Laser", 2, 3, EWeaponType.Direct, 2));
+            AddWeapon(new Weapon("Hammer", 1, 8, EWeaponType.Explosive, 2));
+            AddWeapon(new Weapon("Torpille", 3, 3, EWeaponType.Guided, 2));
+            AddWeapon(new Weapon("Mitrailleuse", 6, 8, EWeaponType.Direct, 1));
+            AddWeapon(new Weapon("EMG", 1, 7, EWeaponType.Explosive, 1.5));
+            AddWeapon(new Weapon("Missile", 4, 100, EWeaponType.Guided, 4));
         }
 
-        private void Init()
-        {
-            this.WeaponList = new List<Weapon>();
-
-            this.AddWeapon(new Weapon("Cannon à tuer des gens", 10, 16, EWeaponType.Direct));
-            this.AddWeapon(new Weapon("Cannon à tuer beaucoup de gens", 20, 40, EWeaponType.Explosive));
-            this.AddWeapon(new Weapon("Cannon à tuer un gen en particulier", 100, 400, EWeaponType.Guided));
-        }
-
-        public void ViewArmory()
+        public static void ViewArmory()
         {
             Console.WriteLine("Armes : ");
-            foreach (Weapon wpon in this.WeaponList)
+            foreach (Weapon wpon in WeaponList)
             {
                 Console.WriteLine(wpon.ToString());
             }
             Console.WriteLine();
         }
 
-        public void AddWeapon(Weapon aWeapon)
+        public static void AddWeapon(Weapon aWeapon)
         {
-            this.WeaponList.Add(aWeapon);
+            WeaponList.Add(aWeapon);
         }
 
-        public void RemoveWeapon(Weapon aWeapon)
+        public static void RemoveWeapon(Weapon aWeapon)
         {
-            this.WeaponList.Remove(aWeapon);
+            WeaponList.Remove(aWeapon);
         }
 
-        public bool Contains(Weapon aWeapon)
+        public static bool Contains(Weapon aWeapon)
         {
             bool rtrn = false;
-            foreach (Weapon wpon in this.WeaponList)
+            foreach (Weapon wpon in WeaponList)
             {
                 if (wpon.Equals(aWeapon))
                 {

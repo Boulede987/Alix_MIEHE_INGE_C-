@@ -10,7 +10,6 @@ namespace Miehe_Alix_Tp1
     {
 
         private List<Player> players;
-        private Armory armory;
 
         public SpaceInvaders()
         {
@@ -21,24 +20,25 @@ namespace Miehe_Alix_Tp1
         {
             SpaceInvaders aSpaceInvaders = new SpaceInvaders();
 
+            Armory.Init();
+
             aSpaceInvaders.Init();
             aSpaceInvaders.ViewPlayers();
-            aSpaceInvaders.armory.ViewArmory();
+            Armory.ViewArmory();
         }
 
         private void Init()
         {
-            this.armory = new Armory();
             this.players = new List<Player>();
 
-            players.Add(new Player("jhon", "sigma", "Ancutraxxe", this.armory));
-            players.Add(new Player("bob", "bobby", "Degeulaxxe", this.armory));
-            players.Add(new Player("alberto", "ultima", "Putraxxe", this.armory));
+            players.Add(new Player("jhon", "sigma", "Ancutraxxe"));
+            players.Add(new Player("bob", "bobby", "Degeulaxxe"));
+            players.Add(new Player("alberto", "ultima", "Putraxxe"));
 
-            armory.AddWeapon(new Weapon("Dégomatron 9000", 999999, 9999999, EWeaponType.Explosive));
+            Armory.AddWeapon(new Weapon("Dégomatron 9000", 999999, 9999999, EWeaponType.Explosive, 0));
 
             // c mon petit cousin il pue la merde
-            players[2].SetSpaceship(new Spaceship(999999999, 999999999, 999999999, 999999999, new List<Weapon> { new Weapon("Dégomatron 9000", 999999, 9999999, EWeaponType.Explosive) }, this.armory));
+            players[2].SetSpaceship(new Spaceship(999999999, 999999999, 999999999, 999999999, new List<Weapon> { new Weapon("Dégomatron 9000", 999999, 9999999, EWeaponType.Explosive, 0) }));
         }
 
         public List<Player> GetPlayers()

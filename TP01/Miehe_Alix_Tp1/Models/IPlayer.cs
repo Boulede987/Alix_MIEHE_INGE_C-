@@ -1,5 +1,5 @@
 ﻿//using Models.SpaceShips;
-using Miehe_Alix_Tp1;
+using Miehe_Alix_Tp1.Spaceships;
 
 namespace Models
 {
