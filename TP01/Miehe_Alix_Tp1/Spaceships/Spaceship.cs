@@ -67,7 +67,7 @@ namespace Miehe_Alix_Tp1.Spaceships
             {
                 double remainingDamages = damages - CurrentShield;
                 CurrentShield = 0;
-                if (CurrentStructure >= remainingDamages)
+                if (CurrentStructure > remainingDamages)
                 {
                     CurrentStructure -= remainingDamages;
                     Console.WriteLine($"{Name} a subi {damages} points de dégâts !");
@@ -112,6 +112,7 @@ namespace Miehe_Alix_Tp1.Spaceships
 
         public void ShootTarget(Spaceship target)
         {
+            Console.Write($"{Name} tire :");
             double totalDamage = 0;
             foreach (Weapon wpon in Weapons)
             {

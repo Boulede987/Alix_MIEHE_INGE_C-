@@ -20,6 +20,8 @@ namespace Miehe_Alix_Tp1.Spaceships
 
             Console.WriteLine($"{Name} utilise son ability : Suicide !");
 
+            bool isCloseToPlayer = false;
+
             int i = 0;
             foreach (Spaceship ship in spaceships)
             {
@@ -28,14 +30,21 @@ namespace Miehe_Alix_Tp1.Spaceships
                     if (spaceships[i+1].BelongsPlayer)
                     {
                         spaceships[i+1].TakeDamages(10);
+                        isCloseToPlayer = true;
                     }
 
                     if (spaceships[i-1].BelongsPlayer)
                     {
                         spaceships[i-1].TakeDamages(10);
+                        isCloseToPlayer = true;
                     }
                 }
                 i++;
+            }
+
+            if (isCloseToPlayer) 
+            {
+                this.TakeDamages(999999);
             }
 
         }

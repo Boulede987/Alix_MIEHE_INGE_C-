@@ -50,10 +50,12 @@ namespace Miehe_Alix_Tp1
 
                 if (aSpaceInvaders.CheckEnemiesDestroyed() && aSpaceInvaders.CheckPlayersDestroyed() == false)
                 {
+                    Console.WriteLine();
                     Console.WriteLine("Tous les ennemis ont été détruits ! Vous avez gagné !");
                 }
                 else if (aSpaceInvaders.CheckEnemiesDestroyed() == false && aSpaceInvaders.CheckPlayersDestroyed())
                 {
+                    Console.WriteLine();
                     Console.WriteLine("Tous les joueurs ont été détruits ! Vous avez perdu !");
                 }
 
@@ -157,8 +159,12 @@ namespace Miehe_Alix_Tp1
                     {
                         if (CheckEnemiesDestroyed() == false)
                         {
+                            // on choisit une arme au hasard parmi celles du vaisseau
+                            // pour qe le joueur n'utilise pas toujours la mitrailleuse
+                            Weapon weaponToUse = spaceship.Weapons[new Random().Next(spaceship.Weapons.Count)];
+
                             Spaceship enemySpaceship = GetRandomEnemy();
-                            spaceship.ShootTarget(enemySpaceship);
+                            ((ViperMKII)spaceship).ShootTarget(enemySpaceship, weaponToUse); // le vaisseau joueur est toujours un ViperMKII
                         }
                     }
                 }
@@ -167,7 +173,7 @@ namespace Miehe_Alix_Tp1
 
 
             //d.    Chaque début de tour les vaisseaux ayant perdu des points de bouclier en regagne maximum 2.
-            HealShileds();
+            HealShileds(2);
 
 
             foreach (Spaceship spaceship in turnOrder)
@@ -192,6 +198,11 @@ namespace Miehe_Alix_Tp1
                     }
                 }
             }
+
+
+
+
+            displayShipStats();
 
         }
 
@@ -221,7 +232,7 @@ namespace Miehe_Alix_Tp1
             //show turn order
             foreach (Spaceship ship in turnOrder)
             {
-                Console.WriteLine($"Ordre de jeu : {ship.Name}");
+                Console.WriteLine($"Ordre du tour : {ship.Name}");
             }
 
             return turnOrder;
@@ -229,11 +240,11 @@ namespace Miehe_Alix_Tp1
 
 
 
-        private void HealShileds()
+        private void HealShileds(int healAmount)
         {
             foreach (Spaceship spaceship in spaceships)
             {
-                spaceship.RepairShield(2);
+                spaceship.RepairShield(healAmount);
             }
         }
 
@@ -321,12 +332,23 @@ namespace Miehe_Alix_Tp1
         {
             foreach (Spaceship spaceship in turnOrder)
             {
-                if (spaceship is IAbility abilityShip)
+                if (spaceship is IAbility abilityShip && spaceship.IsDestroyed == false)
                 {
                     abilityShip.UseAbility(turnOrder);
                 }
             }
 
+        }
+
+
+
+        private void displayShipStats()
+        {
+            foreach (Spaceship ship in spaceships)
+            {
+                Console.WriteLine($"{ship.Name} - Structure: {ship.CurrentStructure}/{ship.Structure} | Bouclier: {ship.CurrentShield}/{ship.Shield} " +
+                    $"| Statut: {(ship.IsDestroyed ? "Détruit" : "En combat")}");
+            }
         }
     }
 }
