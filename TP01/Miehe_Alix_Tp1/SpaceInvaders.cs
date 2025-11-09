@@ -13,11 +13,11 @@ namespace Miehe_Alix_Tp1
 {
     public class SpaceInvaders
     {
+        
+        private List<Player> players; // liste de joueurs
 
-        private List<Player> players;
-
-        private List<Spaceship> spaceships;
-        private List<Spaceship> enemies;
+        private List<Spaceship> spaceships; // liste des vaisseaux du jeu, joueurs + ennemis
+        private List<Spaceship> enemies; // liste d'ennemis
 
         public SpaceInvaders()
         {
@@ -44,10 +44,10 @@ namespace Miehe_Alix_Tp1
                 Console.WriteLine();
                 Console.WriteLine($"--- Round {nbRounds} ---");
                 Console.WriteLine();
-                aSpaceInvaders.PlayRound();
+                aSpaceInvaders.PlayRound(); // on avance le jeu
 
 
-
+                // on affiche le résultat de la partie si un camp est mort
                 if (aSpaceInvaders.CheckEnemiesDestroyed() && aSpaceInvaders.CheckPlayersDestroyed() == false)
                 {
                     Console.WriteLine();
@@ -61,9 +61,10 @@ namespace Miehe_Alix_Tp1
 
 
 
-                Console.ReadLine();
+                Console.ReadLine(); // pour avancer avec le rythme de l'utilisateur
 
-            } while (aSpaceInvaders.CheckEnemiesDestroyed() == false && aSpaceInvaders.CheckPlayersDestroyed() == false);
+            } while (aSpaceInvaders.CheckEnemiesDestroyed() == false && aSpaceInvaders.CheckPlayersDestroyed() == false); // tant que un camp n'est pas mort
+            // on exécute ce qu'il y as dans le do
         }
 
         private void Init()
@@ -84,7 +85,7 @@ namespace Miehe_Alix_Tp1
             this.spaceships = new List<Spaceship>();
             spaceships.Add(players[0].BattleShip);
             spaceships.Add(players[1].BattleShip);
-            spaceships.Add(players[2].BattleShip); // joueur
+            spaceships.Add(players[2].BattleShip); // joueurs
 
             this.enemies = new List<Spaceship>();
 
@@ -128,15 +129,12 @@ namespace Miehe_Alix_Tp1
         public void PlayRound()
         {
             List<Spaceship> turnOrder = new List<Spaceship>();
-            // on verifie que les ennemies ne sontpas tous détruits
+            // on verifie que les ennemies / joueurs ne soit pas tous détruits
             bool allEnemiesDestroyed = CheckEnemiesDestroyed();
             bool allPlayersDestroyed = CheckPlayersDestroyed();
-
-
-            //a.    Elle devra faire jouer chaque vaisseau l’un après l’autre dans l’ordre de la liste d'ennemis.
             
 
-            turnOrder = MakeTurnOrder();
+            turnOrder = MakeTurnOrder(); // on créer l'odre de jeu des vaisseaux
 
 
             // les vaisseau à IAbility l'utilisent
@@ -151,7 +149,7 @@ namespace Miehe_Alix_Tp1
                     {
                         if (CheckPlayersDestroyed() == false)
                         {
-                            Spaceship playerSpaceship = GetLastLivingPlayer();
+                            Spaceship playerSpaceship = GetLastLivingPlayer(); // on tire sur le joueur courant
                             spaceship.ShootTarget(playerSpaceship);
                         }
                     }
@@ -161,10 +159,22 @@ namespace Miehe_Alix_Tp1
                         {
                             // on choisit une arme au hasard parmi celles du vaisseau
                             // pour qe le joueur n'utilise pas toujours la mitrailleuse
-                            Weapon weaponToUse = spaceship.Weapons[new Random().Next(spaceship.Weapons.Count)];
+                            List<Weapon> availableWeapons = new List<Weapon>();
 
-                            Spaceship enemySpaceship = GetRandomEnemy();
-                            ((ViperMKII)spaceship).ShootTarget(enemySpaceship, weaponToUse); // le vaisseau joueur est toujours un ViperMKII
+                            foreach (Weapon weapon in spaceship.Weapons)
+                            {
+                                if (weapon.TimeBeforReload == 0)
+                                {
+                                    availableWeapons.Add(weapon);
+                                }
+                            }
+
+                            if (availableWeapons.Count > 0)
+                            {
+                                Spaceship enemySpace = GetRandomEnemy(); // on tire sur un ennemi au hasard
+                                Weapon weaponToUse = availableWeapons[new Random().Next(availableWeapons.Count)]; // on utilise una arme au hasard
+                                ((ViperMKII)spaceship).ShootTarget(enemySpace, weaponToUse); // le vaisseau joueur est toujours un ViperMKII
+                            }
                         }
                     }
                 }
@@ -176,47 +186,28 @@ namespace Miehe_Alix_Tp1
             HealShileds(2);
 
 
-            foreach (Spaceship spaceship in turnOrder)
-            {
-                if (spaceship.IsDestroyed == false)
-                {
-                    if (enemies.Contains(spaceship)) // si c'est un ennemi
-                    {
-                        if (CheckPlayersDestroyed() == false)
-                        {
-                            Spaceship playerSpaceship = GetLastLivingPlayer();
-                            spaceship.ReloadWeapons();
-                        }
-                    }
-                    else // si c'est le joueur
-                    {
-                        if (CheckEnemiesDestroyed() == false)
-                        {
-                            Spaceship enemySpaceship = GetRandomEnemy();
-                            spaceship.ReloadWeapons();
-                        }
-                    }
-                }
-            }
+            reloadAllWeapons(); // on recharge chaque tour
 
 
 
 
-            displayShipStats();
+            displayShipStats(); // pour suivre
 
         }
 
 
+        // pou récupérer l'ordre de jeux des vaisseaux
         private List<Spaceship> MakeTurnOrder()
         {
-            List<Spaceship> turnOrder = new List<Spaceship>();
+            List<Spaceship> turnOrder = new List<Spaceship>(); // liste dans l'ordre dans lequel les vaisseau vont tirer
+
             int playerProba = GetProbability(); // Position aléatoire où insérer le joueur (0 à enemies.Count)
             Spaceship playerSpaceship = GetLastLivingPlayer();
 
             int enemyIndex = 0;
             for (int i = 0; i <= enemies.Count; i++)
             {
-                if (i == playerProba)
+                if (i == playerProba) // 1/nbEnemies chance d'insérer le joueur à cette position
                 {
                     // Insérer le joueur à cette position
                     turnOrder.Add(playerSpaceship);
@@ -308,6 +299,10 @@ namespace Miehe_Alix_Tp1
             return enemySpaceship;
         }
 
+        // 1 / nbEnmeie chance d'être premier
+        // 2 / nbEnmeie chance d'être deuxième
+        // 3 / nbEnmeie chance d'être troisième
+        // etc
         private int GetProbability()
         {
             int livingEnemies = 0;
@@ -318,10 +313,25 @@ namespace Miehe_Alix_Tp1
                     livingEnemies++;
                 }
             }
-            Random rand = new Random();
-            int playerChance = rand.Next(1, livingEnemies + 1); // on tire un nombre entre 1 et le nombre d'ennemis vivants
 
-            return playerChance;
+            // Sum of 1+2+3+...+n = n*(n+1)/2
+            int totalWeight = (livingEnemies * (livingEnemies + 1)) / 2;
+            int randomValue = new Random().Next(0, totalWeight);
+
+            int cumulativeWeight = 0;
+            int position = 0;
+
+            for (int i = 1; i <= livingEnemies; i++)
+            {
+                cumulativeWeight += i;
+                if (randomValue < cumulativeWeight)
+                {
+                    position = i - 1; // Convert to 0-based index
+                    i = livingEnemies + 1; // Exit loop without break
+                }
+            }
+
+            return position;
         }
 
 
@@ -338,6 +348,18 @@ namespace Miehe_Alix_Tp1
                 }
             }
 
+        }
+
+
+        private void reloadAllWeapons()
+        {
+            foreach (Spaceship spaceship in spaceships)
+            {
+                if (spaceship.IsDestroyed == false)
+                {
+                    spaceship.ReloadWeapons();
+                }
+            }
         }
 
 
