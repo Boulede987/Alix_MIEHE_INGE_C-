@@ -32,7 +32,7 @@ namespace Miehe_Alix_Tp1.Spaceships
                 return avg;
             }
         }
-        public bool IsDestroyed
+        public bool IsDestroyed // propriétée calculée
         {
             get
             {
@@ -58,21 +58,21 @@ namespace Miehe_Alix_Tp1.Spaceships
 
         public void TakeDamages(double damages)
         {
-            if (CurrentShield >= damages)
+            if (CurrentShield >= damages) // si il y as plus de bouclier que de dégats
             {
                 CurrentShield -= damages;
                 Console.WriteLine($"{Name} a subi {damages} points de dégâts !");
             }
             else
             {
-                double remainingDamages = damages - CurrentShield;
+                double remainingDamages = damages - CurrentShield; // dégats restant après avoir tout enlevé du bouclier
                 CurrentShield = 0;
-                if (CurrentStructure > remainingDamages)
+                if (CurrentStructure > remainingDamages) // si il reste de la structure après les dégats
                 {
                     CurrentStructure -= remainingDamages;
                     Console.WriteLine($"{Name} a subi {damages} points de dégâts !");
                 }
-                else
+                else // si le vaisseau est détruit
                 {
                     CurrentStructure = 0;
                     Console.WriteLine($"==AAAAVVVVVVAAAA=={Name} est détruit==AAAAVVVVVVAAAA==");
@@ -110,11 +110,11 @@ namespace Miehe_Alix_Tp1.Spaceships
 
 
 
-        public void ShootTarget(Spaceship target)
+        virtual public void ShootTarget(Spaceship target)
         {
             Console.Write($"{Name} tire :");
             double totalDamage = 0;
-            foreach (Weapon wpon in Weapons)
+            foreach (Weapon wpon in Weapons) // on tire avec toutes les armes
             {
                 totalDamage += wpon.Shoot();
             }
@@ -193,7 +193,7 @@ namespace Miehe_Alix_Tp1.Spaceships
 
 
 
-        public void ReloadWeapons()
+        public void ReloadWeapons() // recharge les armes en réduisant leur temps de rechargement
         {
             foreach (Weapon wpon in Weapons)
             {

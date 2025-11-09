@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,9 +23,27 @@ namespace Miehe_Alix_Tp1.Spaceships
         }
 
 
-        public void ShootTarget(Spaceship target, Weapon weapon)
+        public override void ShootTarget(Spaceship target) // Tirer avec une arme spécifique
         {
-            target.TakeDamages(weapon.Shoot());
+
+            // on choisit une arme au hasard parmi celles du vaisseau
+            // pour qe le joueur n'utilise pas toujours la mitrailleuse
+            List<Weapon> availableWeapons = new List<Weapon>();
+
+            foreach (Weapon weapon in this.Weapons)
+            {
+                if (weapon.TimeBeforReload == 0)
+                {
+                    availableWeapons.Add(weapon);
+                }
+            }
+
+            if (availableWeapons.Count > 0)
+            {
+                Weapon weaponToUse = availableWeapons[new Random().Next(availableWeapons.Count)]; // on utilise una arme au hasard
+                Console.Write($"{Name} tire avec son arme {weaponToUse.Name} :");
+                target.TakeDamages(weaponToUse.Shoot());
+            }
         }
 
     }

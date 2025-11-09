@@ -157,24 +157,8 @@ namespace Miehe_Alix_Tp1
                     {
                         if (CheckEnemiesDestroyed() == false)
                         {
-                            // on choisit une arme au hasard parmi celles du vaisseau
-                            // pour qe le joueur n'utilise pas toujours la mitrailleuse
-                            List<Weapon> availableWeapons = new List<Weapon>();
-
-                            foreach (Weapon weapon in spaceship.Weapons)
-                            {
-                                if (weapon.TimeBeforReload == 0)
-                                {
-                                    availableWeapons.Add(weapon);
-                                }
-                            }
-
-                            if (availableWeapons.Count > 0)
-                            {
-                                Spaceship enemySpace = GetRandomEnemy(); // on tire sur un ennemi au hasard
-                                Weapon weaponToUse = availableWeapons[new Random().Next(availableWeapons.Count)]; // on utilise una arme au hasard
-                                ((ViperMKII)spaceship).ShootTarget(enemySpace, weaponToUse); // le vaisseau joueur est toujours un ViperMKII
-                            }
+                            Spaceship enemySpace = GetRandomEnemy(); // on tire sur un ennemi au hasard
+                            spaceship.ShootTarget(enemySpace);
                         }
                     }
                 }
@@ -270,7 +254,7 @@ namespace Miehe_Alix_Tp1
 
         private Spaceship GetLastLivingPlayer()
         {
-            // les ennemies tirent sur le premier joueur vivant
+            // les ennemies tirent sur le premier joueur vivant (out les joueurs participent)
             Spaceship playerSpaceship = new ViperMKII(1, 1, 1, 1, new List<Weapon>(), "default");
             // on recup le dernier joueur vivant, qui est le premier à être visé par les ennemies
             foreach (Player player in players)
@@ -298,6 +282,7 @@ namespace Miehe_Alix_Tp1
 
             return enemySpaceship;
         }
+
 
         // 1 / nbEnmeie chance d'être premier
         // 2 / nbEnmeie chance d'être deuxième
