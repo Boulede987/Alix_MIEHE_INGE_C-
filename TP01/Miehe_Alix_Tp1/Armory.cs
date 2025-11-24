@@ -62,5 +62,25 @@ namespace Miehe_Alix_Tp1
 
             return rtrn;
         }
+
+
+        //premet de retourner les 5 armes avec les plus gros dégats moyens
+        public static List<Weapon> GetTop5WeaponsByAverageDamage()
+        {
+            return WeaponList
+                .OrderByDescending(w => w.AverageDamage)
+                .Take(5)
+                .ToList();
+        }
+
+
+        //premet de retourner les 5 armes avec les plus gros dégats minimums
+        public static List<Weapon> GetTop5WeaponsByMinDamage()
+        {
+            return WeaponList
+                .OrderByDescending(w => w.MinDamage)
+                .Take(5)
+                .ToList();
+        }
     }
 }
