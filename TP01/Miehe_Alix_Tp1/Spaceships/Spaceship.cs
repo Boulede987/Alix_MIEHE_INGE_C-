@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -207,7 +208,18 @@ namespace Miehe_Alix_Tp1.Spaceships
         }
 
 
-
+        public Player GetPlayerFromSpaceship(List<Player> playerList)
+        {
+            Player rtrn = null;
+            foreach (Player plyr in playerList)
+            {
+                if (plyr.BattleShip.Equals(this))
+                {
+                    rtrn = plyr;
+                }
+            }
+            return rtrn;
+        }
 
     }
 }

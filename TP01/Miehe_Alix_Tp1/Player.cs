@@ -18,6 +18,8 @@ namespace Miehe_Alix_Tp1
 
         public Spaceship BattleShip { get; set; }
 
+        public bool isActive { get; set; }
+
         public Player(string aFirstName, string aLastName, string anAlias)
         {
             this.firstName = FormatName(aFirstName);
@@ -35,7 +37,7 @@ namespace Miehe_Alix_Tp1
 
         public override string ToString()
         {
-            return $"{Alias} ({firstName} {lastName})";
+            return $"{Alias} ({firstName} {lastName}) :: {(isActive ? "Actif" : "Inactif")}";
         }
 
         public bool Equals(Player aPlayer)
