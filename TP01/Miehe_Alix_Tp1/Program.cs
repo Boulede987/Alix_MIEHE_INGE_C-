@@ -4,3 +4,4 @@ using Miehe_Alix_Tp1;
 SpaceInvaders aSpaceInvaders = new SpaceInvaders();
 
 aSpaceInvaders.Main();
+//aSpaceInvaders.Main(new string[] { "txt.csv" });
